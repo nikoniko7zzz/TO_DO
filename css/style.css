@@ -27,88 +27,38 @@ img {
 body {
   padding: 0 4%; /* スマホ向け余白の設定 */
   border: 1px solid black;
+  height: 812px;
+  
 }
-header {
-  margin-bottom:30px;
-}
-/* #input {
+#lottery {
   height: 50px;
-  width: 23%;
-  text-align: center;
-  line-height: 50px;
-  background-color: #ffffff;
-  border: thick double #32a1ce;
-  border-radius: 40%;
-  margin: 5px 0 0 0;
-} */
-a {
-  display: block;
+  width: 100px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
-.menu {
+#bingo{
+  /* display: flex;
+  justify-content:center; */
+  flex-wrap: wrap;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  
+}
+#box {
   display: flex;
-  padding: 0;
+  justify-content:center;
+  flex-wrap: wrap;
 }
-.menu li {
-  margin:0;
-  text-align: center;
-  line-height: 50px;
-  height:50px;
-  width: 20%;
-  border-radius: 5px 18px 0 0;
-}
-#input_menu {
-  background-color: lightgray;
-  border: 1px solid darkgray;
-}
-#today_menu {
-  background-color: lightgray;
-  border: 1px solid darkgray;
-}
-#todo_menu {
-  background-color: lightgray;
-  border: 1px solid darkgray;
-}
-#shop_menu {
-  background-color: lightgray;
-  border: 1px solid darkgray;
-}
-#sched_menu {
-  background-color: lightgray;
-  border: 1px solid darkgray;
-}
-#save {
-  margin: 20px 0 50px 0;
-  width: 25%;
+#box p {
   height: 50px;
+  width: 50px;
+  border: 1px solid black;
+  margin: 0;
 }
-/* #todo {
-  text-align: left;
-} */
-.container {
-  padding: 0;
+p {
+  align-items: center;
+  /* vertical-align: center; */
+  line-height: 50px;
 }
-#list {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0;
-}
-
-table {
-width: 100%;
-margin-bottom:500px;
-}
-td {
-  border: #ced4da 1px solid;
-  height: 40px;
-  line-height: 40px;
-}
-#td1 {
-  width: 20%;
-}
-#td2 {
-  width: 60%;
-}
-/* button {
-  display: block;
-} */

@@ -1,92 +1,115 @@
+
+
+// 新しくカードをつくるを押した時--------------------------------
+const com_Num_1 = [];
+
 $(function () {
-  // saveボタンを押して保存する
-  $("#save").on("click", function () {
-    // 入力データをdataという配列にする
-    const data = {
-      category: $('#category').val(),
-      todo: $('#todo').val(),
-      // by_when: $('#by_when').val(),
-      // textarea: $('#textarea').val(),
+  $('#new').on('click', function () {
+
+    // ----重複しない配列--ここから↓↓↓↓↓↓↓↓↓↓↓↓-----------------------
+    // 1〜24までの配列をつくる
+    // 空の配列を作成
+    for (let i = 1; i <= 24; i++) {
+      // 1〜24まで順番に配列に入れる
+      com_Num_1.push(i);
+    }
+    let len = com_Num_1.length;
+    //シャッフルアルゴリズム
+    // もともと最後にあった値と、ランダムで選ばれた値を交換する
+    // 最後の値は確定させて、残りの0〜最後の一つ前までで再度値を交換していきシャッフルさせる
+    while (len) {
+      const ran_Num_1 = Math.floor(Math.random() * len);
+      let t = com_Num_1[--len];
+      com_Num_1[len] = com_Num_1[ran_Num_1];
+      com_Num_1[ran_Num_1] = t;
+    }
+    //シャッフルされた配列の要素を順番に配列に入れる
+    com_Num_1.forEach(function (value) { com_Num_1.push(value) });
+
+    // ランダムになっているかの確認
+    // for (let i = 0; i < 24; i++) {
+    //   console.log(com_Num_1[i]);
+    // }
+    // ----重複しない配列--ここまで↑↑↑↑↑↑↑↑↑↑↑↑------------------------
+
+    // id="bingo"に枠と数字のついたカードを追加--------------------------------
+    // カードのidのとり方は
+    // 1行目 0 1 2 3 4 
+    // 2行目 5 6 7 8 9
+    // 3行目 10 11 Free 12  13
+    // 4行目 14 15 16 17 18
+    // 5行目 19 20 21 22 23
+    // カードにcom_Num_1[0]〜com_Num_1[23]が入る
+    for (let i = 0; i < 12; i++) {
+      // $("#box").append('<p id="' + i + '">' + i + '</p>');
+      $("#box").append('<p style="background-color: orange;" id="' + i + '">' + com_Num_1[i] + '</p>');
+    }
+    $("#box").append('<p id="free">FREE</p>');
+    for (let i = 12; i < 24; i++) {
+      // $("#box").append('<p id="' + i + '">' + i + '</p>');
+      $("#box").append('<p style="background-color: orange;" id="' + i + '">' + com_Num_1[i] + '</p>');
+    }
+  });
+});
+
+
+// 抽選をするを押した時--------------------------------
+const com_Num_2 = [];
+
+$(function () {
+  $('#ok').on('click', function () {
+
+    // ----重複しない配列--ここから↓↓↓↓↓↓↓↓↓↓↓↓-----------------------
+    // 1〜24までの配列をつくる
+    // 空の配列を作成
+    for (let i = 1; i <= 24; i++) {
+      // 1〜24まで順番に配列に入れる
+      com_Num_2.push(i);
+    }
+    let len = com_Num_2.length;
+    //シャッフルアルゴリズム
+    // もともと最後にあった値と、ランダムで選ばれた値を交換する
+    // 最後の値は確定させて、残りの0〜最後の一つ前までで再度値を交換していきシャッフルさせる
+    while (len) {
+      const ran_Num_2 = Math.floor(Math.random() * len);
+      let t = com_Num_2[--len];
+      com_Num_2[len] = com_Num_2[ran_Num_2];
+      com_Num_2[ran_Num_2] = t;
+    }
+    //シャッフルされた配列の要素を順番に配列に入れる
+    com_Num_2.forEach(function (value) { com_Num_2.push(value) });
+
+    // ランダムになっているかの確認
+    // for (let i = 0; i < 24; i++) {
+    //   console.log(com_Num_2[i]);
+    // }
+    // ----重複しない配列--ここまで↑↑↑↑↑↑↑↑↑↑↑↑------------------------
+    function pushBtn() {
+      $('#start').on('click', function () {
+        $('#lottery').text(com_Num_2[i]);
+        // 配列要素を検索するinArray
+        const hit = $.inArray(com_Num_2[i], com_Num_1);
+        // console.log(hit);
+        // 変数をid名に使用する方法
+        // $('#' + hit).css('background-color', 'orange', 3000);
+        $('#' + hit).animate({
+          opacity: '0',
+        }, 1500, 'swing');
+        i++;
+      });
     };
-
-    // 配列dataをJSONデータに保存する
-    const jsonData = JSON.stringify(data);
-    // JSONデータをlocalStorageに保存する。PHPなどでデータを使えるようにする
-    // storage.setItem(keyName, keyValue); 保存するキーと値をセットにする
-    // localStorage.length.toString() localStorageにあるデータの数を出す
-    // キーとvalueをセットにして、保存する キーはデータの数、値は入力されたテキスト
-    const keyNum = (localStorage.length.toString());
-    localStorage.setItem(keyNum, jsonData);
-    // id=categoryとtodoのvalueを消す
-    $("#category").val("");
-    $("#todo").val("");
-
-    showList();
+    while (23) {
+      pushBtn();
+    }
   });
 
-  showList();
 });
-  
-// // 追加したり、削除した時にリストの表示を更新する
-function showList() {
-  $("#todo_table").html("");
-  for (let keyNum = 0; keyNum < localStorage.length; keyNum++) {
-    // if (localStorage.getItem(keyNum)) {
-      // localStorageのデータをjsonDataと名前をつけて
-      // jsonDataというデータをJSONファイルにする 名前はobj_get
-      const jsonData = localStorage.getItem(keyNum);
-      const obj_get = JSON.parse(jsonData);
-    //   //  変数iに1づつ足して 0〜localStorageにあるデータの数まで繰り返す
-      //     // ulの中にリストを追加 append＝追加
-      //     // $("todo_table").append("<tr><td></td></tr>") ←テーブルに行を増やす時
-      //     // buttonにキーを割り付けて、押したら削除できる
-    
-    
-    
-    $("#todo_table").append('<tr><td id="td1">' + obj_get.category + '</td><td id="td2">' + obj_get.todo + '</td><td onclick = "deleteItem(' + obj_get + ')">Delete</td></tr>');
-
-    // onclick = 'deleteItem(" + localStorage.key(i) + ")'
-  }
-}
-
-// onclick = 'deleteItem(" + obj_get + ")'
-// onclick = "deleteItem(' + obj_get + ')"
-
-function deleteItem(obj_get) {
-  // const keyNum = obj_get;
-  localStorage.removeItem('obj_get');
-  showList();
-}
-
-
-// function deleteItem(obj_get) {
-//   // const i = obj_get;
-//   localStorage.removeItem('obj_get');
-//   showList();
-// }
-
-
-// $('#clear').on('click', function () {
-//   localStorage.removeItem('memo');
-//   $('#input').val('');
-//   $('#text_area').val('');
-// });
-
-$('.btn').on('click', function () {
-  const click = $(this).attr('id');
-  localStorage.removeItem('click');
-  showList();
-});
-// // attr メソッド とは、HTML 要素の様々な属性の値を取得や変更ができるメソッド
 
 
 
+// 出てくる番号をランダムで決める
 
+// 出てきた番号をビンゴカードに反映させる
 
-
-
-
-
-
-
+// ラインができたかのチェック
 
