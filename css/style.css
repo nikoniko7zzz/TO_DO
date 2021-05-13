@@ -30,21 +30,27 @@ body {
   height: 812px;
   
 }
+h1 {
+  padding-top:50px;
+}
 #lottery {
-  height: 50px;
-  width: 100px;
-  border: 1px solid black;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 15px solid red;
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-top:10px;
+  margin-bottom: 10px;
 }
 #bingo{
-  /* display: flex;
-  justify-content:center; */
   flex-wrap: wrap;
   width: 250px;
   height: 250px;
   margin: 0 auto;
-  
+  background-image: url("/Users/niko/Desktop/G'sアカデミー/nikoniko/ビンゴゲーム/0513/バービー.jpg");
+	background-position: center;
+	background-size: 115% auto;
+  z-index: 0;
 }
 #box {
   display: flex;
@@ -61,4 +67,48 @@ p {
   align-items: center;
   /* vertical-align: center; */
   line-height: 50px;
+  margin:0;
+}
+
+/* ボタン
+------------------------------- */
+.fuwapochi_btn_green{
+  display: inline-block;
+  background-color: #40C659;
+  color: #FFF;
+  width: 160px;
+  padding: 0.8em;
+  text-decoration: none;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.12), 0 3px 20px 0 rgba(0,0,0,0.12), 0 5px 6px -2px rgba(0,0,0,0.2);
+  -webkit-tap-highlight-color: transparent;
+  transition: .3s ease-out;
+}
+.fuwapochi_btn_green:hover{
+	 cursor: pointer;
+	 text-decoration: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+/* 持ってくる手
+------------------------------- */
+.an2-fadeup {
+    /* background-color:#ff7f50; */
+    font-size: 30px;
+    font-weight: bold;
+    animation-name: fadeup;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    width: 600px;
+    margin:0 auto;
+}
+@keyframes fadeup {
+  from {
+      opacity: 0;
+      transform: translateY(900px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
